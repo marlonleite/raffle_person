@@ -1,5 +1,10 @@
+import logging
+
 import requests
 from django.conf import settings
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie
 from requests import ReadTimeout, ConnectionError
 from rest_framework import status
 from rest_framework.response import Response
@@ -10,6 +15,8 @@ from .serializers import RaffleSerializer
 from ..models import Raffle
 
 
+@method_decorator(cache_page(60 * 2), name="list")
+@method_decorator(vary_on_cookie, name="list")
 class RaffleViewSet(ModelViewSet):
     """
     RaffleViewSet Api
@@ -31,6 +38,7 @@ class RafflingAPIView(APIView):
         except Raffle.DoesNotExist:
             raise None
 
+    @method_decorator(cache_page(60 * 60 * 2))
     def get(self, request, format=None):
 
         raffles = Raffle.objects.all()
@@ -56,6 +64,7 @@ class RafflingAPIView(APIView):
                 return Response(serializer.data, status=status.HTTP_200_OK)
 
         except (ConnectionError, ReadTimeout) as e:
+            logging.error("Connection error")
             return Response({"error": "Connection error"},
                             status.HTTP_500_INTERNAL_SERVER_ERROR
                             )

@@ -15,7 +15,7 @@ from .serializers import RaffleSerializer
 from ..models import Raffle
 
 
-@method_decorator(cache_page(60 * 2), name="list")
+@method_decorator(cache_page(60), name="list")
 @method_decorator(vary_on_cookie, name="list")
 class RaffleViewSet(ModelViewSet):
     """
@@ -38,7 +38,6 @@ class RafflingAPIView(APIView):
         except Raffle.DoesNotExist:
             raise None
 
-    @method_decorator(cache_page(60 * 60 * 2))
     def get(self, request, format=None):
 
         raffles = Raffle.objects.all()

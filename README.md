@@ -188,3 +188,10 @@ Go there:
 
 * **Marlon Leite** - [GitHub](https://github.com/marlonleite)
 
+## Links
+
+* [Sweepstake API](https://github.com/marlonleite/sweepstake/api/)
+* [Python3](https://www.python.org/download/releases/3.0/)
+* [Django](https://docs.djangoproject.com)
+* [Django Rest Framework](https://www.django-rest-framework.org/)
+

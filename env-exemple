@@ -1,0 +1,12 @@
+SECRET_KEY=')t^oc0s1k)qqufj&^%jbe9wo9+53tr@46b4(8oqbmkue0^v3f4'
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+DATABASE_ENGINE=django.db.backends.postgresql
+DATABASE_USER=postgres
+DATABASE_PASSWORD=postgres
+DATABASE_NAME=raffle_person
+DATABASE_HOST=127.0.0.1
+DATABASE_PORT=5432
+
+SWEEPSTAKE_URL=http://localhost:8999

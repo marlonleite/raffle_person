@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.validators import UniqueTogetherValidator
 
 from ..models import Raffle, Person
 
@@ -26,6 +27,19 @@ class RaffleSerializer(serializers.ModelSerializer):
         model = Raffle
         fields = ['number', 'name', 'phone', 'birthday']
         read_only_fields = ('number',)
+
+    def validate_phone(self, attr):
+        contains_letter = any(c.isalpha() for c in attr)
+
+        if contains_letter:
+            raise serializers.ValidationError(
+                "Only numbers are allowed.")
+
+        if len(attr) != 11:
+            raise serializers.ValidationError(
+                "Incorrect number. Make sure it contains 11 digits.")
+
+        return attr
 
     def to_representation(self, instance):
         obj = super().to_representation(instance)

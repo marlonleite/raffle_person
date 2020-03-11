@@ -41,6 +41,14 @@ class RaffleSerializer(serializers.ModelSerializer):
 
         return attr
 
+    def validate_name(self, attr):
+
+        if len(attr) <= 3:
+            raise serializers.ValidationError(
+                "Be sure to add a name longer than 3 characters.")
+
+        return attr
+
     def to_representation(self, instance):
         obj = super().to_representation(instance)
         obj['name'] = instance.person.name

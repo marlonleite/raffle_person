@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Raffle, Person
+
+admin.site.register(Raffle)
+admin.site.register(Person)

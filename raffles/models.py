@@ -28,4 +28,5 @@ def fill_number(sender, instance, **kwargs):
     except Raffle.DoesNotExist:
         number = "0"
 
-    instance.number = str(int(number) + 1).zfill(10)
+    if not instance.number:
+        instance.number = str(int(number) + 1).zfill(6)

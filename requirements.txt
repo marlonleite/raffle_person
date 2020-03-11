@@ -3,3 +3,7 @@ djangorestframework==3.11.0
 requests==2.23.0
 python-decouple==3.3
 psycopg2-binary==2.8.4
+drf-yasg==1.17.1
+
+#prod
+gunicorn==20.0.4
